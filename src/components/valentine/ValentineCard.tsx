@@ -129,7 +129,7 @@ export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
 
           <div className="space-y-4">
             <motion.h2 
-              className={`text-3xl md:text-4xl font-bold ${textClass} leading-tight`}
+              className={`text-2xl md:text-3xl font-bold ${textClass} leading-tight`}
               initial={{ opacity: 0, x: -15 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2, duration: 0.4, ease: 'easeOut' }}
@@ -174,7 +174,7 @@ export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
           </motion.span>
           
           <motion.h2 
-            className={`text-4xl md:text-5xl font-bold ${textClass} leading-tight mb-2`}
+            className={`text-2xl md:text-3xl font-bold ${textClass} leading-tight mb-2`}
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.4, ease: 'easeOut' }}
@@ -217,7 +217,7 @@ export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
           
           <div className="p-8 pt-4">
             <motion.h2 
-              className={`text-3xl md:text-4xl font-bold ${textClass} leading-tight mb-2`}
+              className={`text-2xl md:text-3xl font-bold ${textClass} leading-tight mb-2`}
               initial={{ opacity: 0, x: -15 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2, duration: 0.4, ease: 'easeOut' }}
@@ -247,7 +247,7 @@ export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
       {card.type === 'song' && layout === 'bold' && (
         <div className="flex flex-col justify-center h-full p-8 relative z-10">
           <motion.h2 
-            className={`text-5xl md:text-6xl font-bold ${textClass} leading-tight mb-4`}
+            className={`text-2xl md:text-3xl font-bold ${textClass} leading-tight mb-4`}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.4, ease: 'easeOut' }}
