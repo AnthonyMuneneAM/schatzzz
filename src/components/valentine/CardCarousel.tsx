@@ -82,27 +82,31 @@ export function CardCarousel() {
       {/* Cards container */}
       <div
         ref={containerRef}
-        className="flex items-center gap-6 px-[7.5vw] md:px-[10vw] pt-24 pb-24 overflow-x-auto hide-scrollbar snap-x snap-mandatory h-screen"
+        className="flex items-center gap-4 md:gap-6 px-[7.5vw] md:px-[10vw] pt-24 pb-24 overflow-x-auto hide-scrollbar snap-x snap-mandatory h-screen"
         style={{ 
           scrollSnapType: 'x mandatory',
           WebkitOverflowScrolling: 'touch',
+          scrollBehavior: 'smooth',
         }}
         onMouseDown={() => setIsDragging(true)}
         onMouseUp={() => setIsDragging(false)}
         onMouseLeave={() => setIsDragging(false)}
       >
         {cards.map((card, index) => (
-          <div 
+          <motion.div 
             key={card.id}
             className="snap-center flex-shrink-0"
             style={{ scrollSnapAlign: 'center' }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3, delay: index * 0.05 }}
           >
             <ValentineCard 
               card={card} 
               index={index}
               isActive={currentIndex === index}
             />
-          </div>
+          </motion.div>
         ))}
       </div>
 

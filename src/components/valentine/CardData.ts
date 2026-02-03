@@ -8,6 +8,7 @@ export interface SongCard {
   bgColor: 'navy' | 'golden' | 'blush' | 'coral';
   accentColor: 'navy' | 'golden' | 'blush' | 'coral' | 'cream';
   trackNumber?: number;
+  layout?: 'centered' | 'minimal' | 'split' | 'bold';
 }
 
 export const cards: SongCard[] = [
@@ -23,30 +24,33 @@ export const cards: SongCard[] = [
     type: 'song',
     title: 'Passenger Princess',
     artist: 'Valiant',
-    vibe: 'The one where you let me drive your life.',
+    vibe: '...your legs, them get so weak',
     bgColor: 'golden',
     accentColor: 'navy',
     trackNumber: 1,
+    layout: 'centered',
   },
   {
     id: 'song-2',
     type: 'song',
     title: 'Day One',
     artist: 'Mutoriah, Ayrosh',
-    vibe: 'From the very beginning, it was always you.',
+    vibe: 'Best thing in the city',
     bgColor: 'blush',
     accentColor: 'navy',
     trackNumber: 2,
+    layout: 'minimal',
   },
   {
     id: 'song-3',
     type: 'song',
     title: 'Wrong Places',
     artist: 'Joshua Baraka',
-    vibe: 'Looked everywhere. Found you nowhere expected.',
+    vibe: 'Shottos for the Hottos',
     bgColor: 'navy',
     accentColor: 'blush',
     trackNumber: 3,
+    layout: 'split',
   },
   {
     id: 'song-4',
@@ -57,26 +61,29 @@ export const cards: SongCard[] = [
     bgColor: 'coral',
     accentColor: 'cream',
     trackNumber: 4,
+    layout: 'bold',
   },
   {
     id: 'song-5',
     type: 'song',
     title: 'Twinkle',
     artist: 'Dexta Daps',
-    vibe: 'The way your eyes catch the light.',
+    vibe: 'Next time we f... me ah guh mek a statement',
     bgColor: 'golden',
     accentColor: 'navy',
     trackNumber: 5,
+    layout: 'centered',
   },
   {
     id: 'song-6',
     type: 'song',
     title: 'Not Lucky but Blessed',
     artist: 'Nicki Minaj',
-    vibe: 'You\'re not chance. You\'re chosen.',
+    vibe: 'tattoo with a statement!',
     bgColor: 'blush',
     accentColor: 'navy',
     trackNumber: 6,
+    layout: 'minimal',
   },
   {
     id: 'song-7',
@@ -87,11 +94,12 @@ export const cards: SongCard[] = [
     bgColor: 'navy',
     accentColor: 'golden',
     trackNumber: 7,
+    layout: 'split',
   },
   {
     id: 'outro',
     type: 'outro',
-    message: 'Be my Valentine.',
+    message: 'Schatzzz..\nBe My Valentine',
     bgColor: 'golden',
     accentColor: 'navy',
   },
