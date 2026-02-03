@@ -39,7 +39,7 @@ export const cards: SongCard[] = [
     bgColor: 'blush',
     accentColor: 'navy',
     trackNumber: 2,
-    layout: 'minimal',
+    layout: 'bold',
   },
   {
     id: 'song-3',
@@ -83,7 +83,7 @@ export const cards: SongCard[] = [
     bgColor: 'blush',
     accentColor: 'navy',
     trackNumber: 6,
-    layout: 'minimal',
+    layout: 'split',
   },
   {
     id: 'song-7',
