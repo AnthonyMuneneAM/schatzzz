@@ -5,8 +5,8 @@ export interface SongCard {
   artist?: string;
   vibe?: string;
   message?: string;
-  bgColor: 'navy' | 'golden' | 'blush' | 'coral';
-  accentColor: 'navy' | 'golden' | 'blush' | 'coral' | 'cream';
+  bgColor: 'coral' | 'yellow' | 'pink' | 'magenta' | 'sky' | 'lavender' | 'purple';
+  accentColor: 'coral' | 'yellow' | 'pink' | 'magenta' | 'sky' | 'lavender' | 'purple' | 'cream';
   trackNumber?: number;
   layout?: 'centered' | 'minimal' | 'split' | 'bold';
 }
@@ -16,8 +16,8 @@ export const cards: SongCard[] = [
     id: 'intro',
     type: 'intro',
     message: "This isn't a playlist.\nIt's a feeling.",
-    bgColor: 'navy',
-    accentColor: 'golden',
+    bgColor: 'purple',
+    accentColor: 'yellow',
   },
   {
     id: 'song-1',
@@ -25,8 +25,8 @@ export const cards: SongCard[] = [
     title: 'Passenger Princess',
     artist: 'Valiant',
     vibe: '...your legs, them get so weak',
-    bgColor: 'golden',
-    accentColor: 'navy',
+    bgColor: 'yellow',
+    accentColor: 'purple',
     trackNumber: 1,
     layout: 'centered',
   },
@@ -36,8 +36,8 @@ export const cards: SongCard[] = [
     title: 'Day One',
     artist: 'Mutoriah, Ayrosh',
     vibe: 'Best thing in the city',
-    bgColor: 'blush',
-    accentColor: 'navy',
+    bgColor: 'pink',
+    accentColor: 'purple',
     trackNumber: 2,
     layout: 'bold',
   },
@@ -47,8 +47,8 @@ export const cards: SongCard[] = [
     title: 'Wrong Places',
     artist: 'Joshua Baraka',
     vibe: 'Shottos for the Hottos',
-    bgColor: 'navy',
-    accentColor: 'blush',
+    bgColor: 'purple',
+    accentColor: 'pink',
     trackNumber: 3,
     layout: 'split',
   },
@@ -69,8 +69,8 @@ export const cards: SongCard[] = [
     title: 'Twinkle',
     artist: 'Dexta Daps',
     vibe: 'Next time we f... me ah guh mek a statement',
-    bgColor: 'golden',
-    accentColor: 'navy',
+    bgColor: 'sky',
+    accentColor: 'purple',
     trackNumber: 5,
     layout: 'centered',
   },
@@ -80,8 +80,8 @@ export const cards: SongCard[] = [
     title: 'Not Lucky but Blessed',
     artist: 'Nicki Minaj',
     vibe: 'tattoo with a statement!',
-    bgColor: 'blush',
-    accentColor: 'navy',
+    bgColor: 'magenta',
+    accentColor: 'yellow',
     trackNumber: 6,
     layout: 'split',
   },
@@ -91,16 +91,16 @@ export const cards: SongCard[] = [
     title: 'My Type',
     artist: 'Popcaan',
     vibe: 'Exactly what I was looking for.',
-    bgColor: 'navy',
-    accentColor: 'golden',
+    bgColor: 'lavender',
+    accentColor: 'purple',
     trackNumber: 7,
     layout: 'split',
   },
   {
     id: 'outro',
     type: 'outro',
-    message: 'Schatzzz..\nBe My Valentine',
-    bgColor: 'golden',
-    accentColor: 'navy',
+    message: 'Schatzzz..\nSei mein Valentin',
+    bgColor: 'yellow',
+    accentColor: 'purple',
   },
 ];
