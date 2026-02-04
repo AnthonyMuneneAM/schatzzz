@@ -61,19 +61,13 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
         // Custom Valentine palette
-        navy: {
-          DEFAULT: "hsl(var(--navy))",
-          light: "hsl(var(--navy-light))",
-        },
-        golden: {
-          DEFAULT: "hsl(var(--golden))",
-          muted: "hsl(var(--golden-muted))",
-        },
-        blush: {
-          DEFAULT: "hsl(var(--blush))",
-          soft: "hsl(var(--blush-soft))",
-        },
         coral: "hsl(var(--coral))",
+        yellow: "hsl(var(--yellow))",
+        pink: "hsl(var(--pink))",
+        magenta: "hsl(var(--magenta))",
+        sky: "hsl(var(--sky))",
+        lavender: "hsl(var(--lavender))",
+        purple: "hsl(var(--purple))",
         cream: "hsl(var(--cream))",
       },
       borderRadius: {

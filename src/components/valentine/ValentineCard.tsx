@@ -8,25 +8,34 @@ interface ValentineCardProps {
 }
 
 const bgColorClasses = {
-  navy: 'bg-navy',
-  golden: 'bg-golden',
-  blush: 'bg-blush',
   coral: 'bg-coral',
+  yellow: 'bg-yellow',
+  pink: 'bg-pink',
+  magenta: 'bg-magenta',
+  sky: 'bg-sky',
+  lavender: 'bg-lavender',
+  purple: 'bg-purple',
 };
 
 const textColorClasses = {
-  navy: 'text-navy',
-  golden: 'text-golden',
-  blush: 'text-blush',
   coral: 'text-coral',
+  yellow: 'text-yellow',
+  pink: 'text-pink',
+  magenta: 'text-magenta',
+  sky: 'text-sky',
+  lavender: 'text-lavender',
+  purple: 'text-purple',
   cream: 'text-cream',
 };
 
 const accentBgClasses = {
-  navy: 'bg-navy',
-  golden: 'bg-golden',
-  blush: 'bg-blush',
   coral: 'bg-coral',
+  yellow: 'bg-yellow',
+  pink: 'bg-pink',
+  magenta: 'bg-magenta',
+  sky: 'bg-sky',
+  lavender: 'bg-lavender',
+  purple: 'bg-purple',
   cream: 'bg-cream',
 };
 
