@@ -72,7 +72,7 @@ export function CardCarousel() {
   }, [currentIndex]);
 
   return (
-    <div className="relative min-h-screen bg-navy overflow-hidden">
+    <div className="relative min-h-screen overflow-hidden" style={{ background: 'linear-gradient(to right, hsl(273 32% 64%), hsl(340 40% 80%), hsl(45 60% 85%), hsl(50 70% 82%))' }}>
       <ProgressBar 
         progress={progress} 
         totalCards={cards.length}
@@ -160,18 +160,18 @@ export function CardCarousel() {
       {/* Abstract background shapes */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <motion.div 
-          className="absolute -top-20 -right-20 w-64 h-64 bg-golden/5 rounded-full blur-3xl"
+          className="absolute -top-20 -right-20 w-64 h-64 bg-lavender/20 rounded-full blur-3xl"
           animate={{ 
             scale: [1, 1.2, 1],
-            opacity: [0.05, 0.1, 0.05],
+            opacity: [0.2, 0.3, 0.2],
           }}
           transition={{ duration: 8, repeat: Infinity }}
         />
         <motion.div 
-          className="absolute -bottom-32 -left-32 w-96 h-96 bg-blush/5 rounded-full blur-3xl"
+          className="absolute -bottom-32 -left-32 w-96 h-96 bg-pink/15 rounded-full blur-3xl"
           animate={{ 
             scale: [1, 1.3, 1],
-            opacity: [0.05, 0.08, 0.05],
+            opacity: [0.15, 0.25, 0.15],
           }}
           transition={{ duration: 10, repeat: Infinity, delay: 2 }}
         />
