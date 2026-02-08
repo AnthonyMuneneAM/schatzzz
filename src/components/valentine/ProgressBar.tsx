@@ -14,10 +14,10 @@ export function ProgressBar({ progress, totalCards, currentIndex }: ProgressBarP
         {Array.from({ length: totalCards }).map((_, index) => (
           <div 
             key={index}
-            className="flex-1 h-1 bg-cream/20 rounded-full overflow-hidden"
+            className="flex-1 h-1 bg-purple/40 rounded-full overflow-hidden"
           >
             <motion.div
-              className="h-full bg-golden rounded-full"
+              className="h-full bg-purple rounded-full"
               initial={{ width: 0 }}
               animate={{
                 width: index < currentIndex 
@@ -34,7 +34,7 @@ export function ProgressBar({ progress, totalCards, currentIndex }: ProgressBarP
       
       {/* Card counter */}
       <div className="flex justify-center mt-3">
-        <span className="text-cream/60 text-sm font-medium tracking-wide">
+        <span className="text-purple/80 text-sm font-medium tracking-wide">
           {currentIndex + 1} / {totalCards}
         </span>
       </div>
