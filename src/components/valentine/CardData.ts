@@ -5,10 +5,12 @@ export interface SongCard {
   artist?: string;
   vibe?: string;
   message?: string;
-  bgColor: 'coral' | 'yellow' | 'pink' | 'magenta' | 'sky' | 'lavender' | 'purple';
-  accentColor: 'coral' | 'yellow' | 'pink' | 'magenta' | 'sky' | 'lavender' | 'purple' | 'cream';
   trackNumber?: number;
   layout?: 'centered' | 'minimal' | 'split' | 'bold';
+  // Each card gets its own unique color combo
+  bgGradient: string;
+  textColor: string;
+  accentColor: string;
 }
 
 export const cards: SongCard[] = [
@@ -16,8 +18,9 @@ export const cards: SongCard[] = [
     id: 'intro',
     type: 'intro',
     message: "This isn't a playlist.\nIt's a feeling.",
-    bgColor: 'purple',
-    accentColor: 'yellow',
+    bgGradient: 'linear-gradient(135deg, #714F8E 0%, #A887BC 50%, #D64E83 100%)',
+    textColor: '#F5F08F',
+    accentColor: '#F186B4',
   },
   {
     id: 'song-1',
@@ -25,8 +28,9 @@ export const cards: SongCard[] = [
     title: 'Passenger Princess',
     artist: 'Valiant',
     vibe: '...your legs, them get so weak',
-    bgColor: 'yellow',
-    accentColor: 'purple',
+    bgGradient: 'linear-gradient(160deg, #F5F08F 0%, #F186B4 100%)',
+    textColor: '#714F8E',
+    accentColor: '#EF5031',
     trackNumber: 1,
     layout: 'centered',
   },
@@ -36,8 +40,9 @@ export const cards: SongCard[] = [
     title: 'Day One',
     artist: 'Mutoriah, Ayrosh',
     vibe: 'Best thing in the city',
-    bgColor: 'pink',
-    accentColor: 'purple',
+    bgGradient: 'linear-gradient(145deg, #EF5031 0%, #D64E83 100%)',
+    textColor: '#F5F08F',
+    accentColor: '#FFFFFF',
     trackNumber: 2,
     layout: 'bold',
   },
@@ -47,8 +52,9 @@ export const cards: SongCard[] = [
     title: 'Wrong Places',
     artist: 'Joshua Baraka',
     vibe: 'Shottos for the Hottos',
-    bgColor: 'purple',
-    accentColor: 'pink',
+    bgGradient: 'linear-gradient(170deg, #714F8E 0%, #7BB1E1 100%)',
+    textColor: '#F5F08F',
+    accentColor: '#F186B4',
     trackNumber: 3,
     layout: 'split',
   },
@@ -58,8 +64,9 @@ export const cards: SongCard[] = [
     title: 'Real Bad Gal',
     artist: 'Vybz Kartel',
     vibe: 'The energy you bring? Unmatched.',
-    bgColor: 'coral',
-    accentColor: 'cream',
+    bgGradient: 'linear-gradient(135deg, #EF5031 0%, #F5F08F 100%)',
+    textColor: '#714F8E',
+    accentColor: '#D64E83',
     trackNumber: 4,
     layout: 'bold',
   },
@@ -69,8 +76,9 @@ export const cards: SongCard[] = [
     title: 'Twinkle',
     artist: 'Dexta Daps',
     vibe: 'Next time we f... me ah guh mek a statement',
-    bgColor: 'sky',
-    accentColor: 'purple',
+    bgGradient: 'linear-gradient(150deg, #7BB1E1 0%, #F186B4 100%)',
+    textColor: '#FFFFFF',
+    accentColor: '#F5F08F',
     trackNumber: 5,
     layout: 'centered',
   },
@@ -80,27 +88,42 @@ export const cards: SongCard[] = [
     title: 'Not Lucky but Blessed',
     artist: 'Nicki Minaj',
     vibe: 'tattoo with a statement!',
-    bgColor: 'magenta',
-    accentColor: 'yellow',
+    bgGradient: 'linear-gradient(140deg, #D64E83 0%, #714F8E 100%)',
+    textColor: '#F5F08F',
+    accentColor: '#EF5031',
     trackNumber: 6,
     layout: 'split',
   },
   {
     id: 'song-7',
     type: 'song',
+    title: 'Follow the Leader',
+    artist: 'The Soca Boys',
+    vibe: 'Left.... Right',
+    bgGradient: 'linear-gradient(155deg, #F186B4 0%, #F5F08F 100%)',
+    textColor: '#714F8E',
+    accentColor: '#EF5031',
+    trackNumber: 7,
+    layout: 'minimal',
+  },
+  {
+    id: 'song-8',
+    type: 'song',
     title: 'My Type',
     artist: 'Popcaan',
     vibe: 'Exactly what I was looking for.',
-    bgColor: 'lavender',
-    accentColor: 'purple',
-    trackNumber: 7,
+    bgGradient: 'linear-gradient(160deg, #A887BC 0%, #7BB1E1 100%)',
+    textColor: '#FFFFFF',
+    accentColor: '#F5F08F',
+    trackNumber: 8,
     layout: 'split',
   },
   {
     id: 'outro',
     type: 'outro',
     message: 'Schatzzz..\nSei mein Valentin',
-    bgColor: 'yellow',
-    accentColor: 'purple',
+    bgGradient: 'linear-gradient(135deg, #F5F08F 0%, #F186B4 50%, #D64E83 100%)',
+    textColor: '#714F8E',
+    accentColor: '#EF5031',
   },
 ];
