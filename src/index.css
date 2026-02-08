@@ -1,34 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
-
 @layer base {
   :root {
-    /* Core palette - Valentine Wrapped */
-    --background: 268 29% 43%;
+    /* Core palette - Custom Colors */
+    /* #EF5031 - Coral Red */
+    /* #F5F08F - Light Yellow */
+    /* #F186B4 - Pink */
+    /* #D64E83 - Magenta */
+    /* #7BB1E1 - Sky Blue */
+    /* #A887BC - Lavender */
+    
+    --background: 273 32% 64%;
     --foreground: 58 85% 76%;
 
-    --card: 268 29% 43%;
+    --card: 273 32% 64%;
     --card-foreground: 58 85% 76%;
 
-    --popover: 268 29% 38%;
+    --popover: 273 32% 60%;
     --popover-foreground: 58 85% 76%;
 
-    /* Purple - Primary */
-    --primary: 268 29% 43%;
+    /* Lavender - Primary */
+    --primary: 273 32% 64%;
     --primary-foreground: 58 85% 76%;
 
     /* Light Yellow */
     --secondary: 58 85% 76%;
-    --secondary-foreground: 268 29% 43%;
+    --secondary-foreground: 273 32% 64%;
 
     /* Pink */
     --muted: 336 82% 74%;
-    --muted-foreground: 268 29% 30%;
+    --muted-foreground: 273 32% 30%;
 
-    /* Coral/Red-Orange Accent */
+    /* Coral Red Accent */
     --accent: 10 86% 56%;
     --accent-foreground: 58 85% 76%;
 
@@ -36,60 +43,59 @@
     --destructive: 10 86% 56%;
     --destructive-foreground: 58 85% 76%;
 
-    --border: 268 29% 35%;
-    --input: 268 29% 35%;
+    --border: 273 32% 55%;
+    --input: 273 32% 55%;
     --ring: 58 85% 76%;
 
     --radius: 1rem;
 
-    /* Custom Valentine colors */
-    --coral: 10 86% 56%;
-    --yellow: 58 85% 76%;
-    --pink: 336 82% 74%;
-    --magenta: 340 64% 57%;
-    --sky: 207 62% 68%;
-    --lavender: 273 32% 64%;
-    --purple: 268 29% 43%;
+    /* Custom color palette */
+    --coral: 10 86% 56%;        /* #EF5031 */
+    --yellow: 58 85% 76%;       /* #F5F08F */
+    --pink: 336 82% 74%;        /* #F186B4 */
+    --magenta: 340 64% 57%;     /* #D64E83 */
+    --sky: 207 62% 68%;         /* #7BB1E1 */
+    --lavender: 273 32% 64%;    /* #A887BC */
     --cream: 58 85% 90%;
 
     /* Sidebar defaults */
-    --sidebar-background: 268 29% 38%;
+    --sidebar-background: 273 32% 60%;
     --sidebar-foreground: 58 85% 76%;
     --sidebar-primary: 58 85% 76%;
-    --sidebar-primary-foreground: 268 29% 43%;
+    --sidebar-primary-foreground: 273 32% 64%;
     --sidebar-accent: 336 82% 74%;
-    --sidebar-accent-foreground: 268 29% 43%;
-    --sidebar-border: 268 29% 35%;
+    --sidebar-accent-foreground: 273 32% 64%;
+    --sidebar-border: 273 32% 55%;
     --sidebar-ring: 58 85% 76%;
   }
 
   .dark {
-    --background: 268 29% 43%;
+    --background: 273 32% 64%;
     --foreground: 58 85% 76%;
-    --card: 268 29% 43%;
+    --card: 273 32% 64%;
     --card-foreground: 58 85% 76%;
-    --popover: 268 29% 38%;
+    --popover: 273 32% 60%;
     --popover-foreground: 58 85% 76%;
-    --primary: 268 29% 43%;
+    --primary: 273 32% 64%;
     --primary-foreground: 58 85% 76%;
     --secondary: 58 85% 76%;
-    --secondary-foreground: 268 29% 43%;
+    --secondary-foreground: 273 32% 64%;
     --muted: 336 82% 74%;
-    --muted-foreground: 268 29% 30%;
+    --muted-foreground: 273 32% 30%;
     --accent: 10 86% 56%;
     --accent-foreground: 58 85% 76%;
     --destructive: 10 86% 56%;
     --destructive-foreground: 58 85% 76%;
-    --border: 268 29% 35%;
-    --input: 268 29% 35%;
+    --border: 273 32% 55%;
+    --input: 273 32% 55%;
     --ring: 58 85% 76%;
-    --sidebar-background: 268 29% 38%;
+    --sidebar-background: 273 32% 60%;
     --sidebar-foreground: 58 85% 76%;
     --sidebar-primary: 58 85% 76%;
-    --sidebar-primary-foreground: 268 29% 43%;
+    --sidebar-primary-foreground: 273 32% 64%;
     --sidebar-accent: 336 82% 74%;
-    --sidebar-accent-foreground: 268 29% 43%;
-    --sidebar-border: 268 29% 35%;
+    --sidebar-accent-foreground: 273 32% 64%;
+    --sidebar-border: 273 32% 55%;
     --sidebar-ring: 58 85% 76%;
   }
 }
@@ -101,7 +107,8 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-feature-settings: 'cv11', 'ss01';
   }
 
   /* Hide scrollbar for carousel */

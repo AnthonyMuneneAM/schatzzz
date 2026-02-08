@@ -72,7 +72,7 @@ export function CardCarousel() {
   }, [currentIndex]);
 
   return (
-    <div className="relative min-h-screen overflow-hidden" style={{ background: 'linear-gradient(to right, hsl(273 32% 64%), hsl(340 40% 80%), hsl(45 60% 85%), hsl(50 70% 82%))' }}>
+    <div className="relative min-h-screen overflow-hidden" style={{ background: '#E8DED2' }}>
       <ProgressBar 
         progress={progress} 
         totalCards={cards.length}
@@ -118,7 +118,7 @@ export function CardCarousel() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
             onClick={handlePrev}
-            className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 items-center justify-center rounded-full bg-cream/10 hover:bg-cream/20 text-cream transition-colors"
+            className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 items-center justify-center rounded-full bg-white/80 hover:bg-white text-gray-800 transition-colors shadow-lg"
             aria-label="Previous card"
           >
             <ChevronLeft className="w-6 h-6" />
@@ -133,7 +133,7 @@ export function CardCarousel() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 20 }}
             onClick={handleNext}
-            className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 items-center justify-center rounded-full bg-cream/10 hover:bg-cream/20 text-cream transition-colors"
+            className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 items-center justify-center rounded-full bg-white/80 hover:bg-white text-gray-800 transition-colors shadow-lg"
             aria-label="Next card"
           >
             <ChevronRight className="w-6 h-6" />
@@ -149,7 +149,7 @@ export function CardCarousel() {
         transition={{ delay: 1 }}
       >
         <motion.p 
-          className="text-cream/40 text-sm tracking-wider"
+          className="text-gray-600 text-sm tracking-wider font-medium"
           animate={{ x: [0, 10, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
         >
@@ -160,7 +160,8 @@ export function CardCarousel() {
       {/* Abstract background shapes */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <motion.div 
-          className="absolute -top-20 -right-20 w-64 h-64 bg-lavender/20 rounded-full blur-3xl"
+          className="absolute top-20 right-20 w-64 h-64 rounded-full blur-3xl"
+          style={{ backgroundColor: '#9B7EBD20' }}
           animate={{ 
             scale: [1, 1.2, 1],
             opacity: [0.2, 0.3, 0.2],
@@ -168,7 +169,8 @@ export function CardCarousel() {
           transition={{ duration: 8, repeat: Infinity }}
         />
         <motion.div 
-          className="absolute -bottom-32 -left-32 w-96 h-96 bg-pink/15 rounded-full blur-3xl"
+          className="absolute bottom-32 left-32 w-96 h-96 rounded-full blur-3xl"
+          style={{ backgroundColor: '#FF6B3520' }}
           animate={{ 
             scale: [1, 1.3, 1],
             opacity: [0.15, 0.25, 0.15],

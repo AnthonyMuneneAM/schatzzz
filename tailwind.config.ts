@@ -60,14 +60,13 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Custom Valentine palette
-        coral: "hsl(var(--coral))",
-        yellow: "hsl(var(--yellow))",
-        pink: "hsl(var(--pink))",
-        magenta: "hsl(var(--magenta))",
-        sky: "hsl(var(--sky))",
-        lavender: "hsl(var(--lavender))",
-        purple: "hsl(var(--purple))",
+        // Custom color palette
+        coral: "hsl(var(--coral))",      // #EF5031
+        yellow: "hsl(var(--yellow))",    // #F5F08F
+        pink: "hsl(var(--pink))",        // #F186B4
+        magenta: "hsl(var(--magenta))",  // #D64E83
+        sky: "hsl(var(--sky))",          // #7BB1E1
+        lavender: "hsl(var(--lavender))", // #A887BC
         cream: "hsl(var(--cream))",
       },
       borderRadius: {
