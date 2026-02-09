@@ -7,6 +7,71 @@ interface ValentineCardProps {
   isActive: boolean;
 }
 
+// Pool ball component for track numbers
+const PoolBall = ({ number, size = 'md', className = '' }: { number: number; size?: 'sm' | 'md' | 'lg'; className?: string }) => {
+  const sizeClasses = {
+    sm: 'w-10 h-10 md:w-12 md:h-12',
+    md: 'w-14 h-14 md:w-16 md:h-16',
+    lg: 'w-16 h-16 md:w-20 md:h-20',
+  };
+  
+  const textSizes = {
+    sm: 'text-lg md:text-xl',
+    md: 'text-xl md:text-2xl',
+    lg: 'text-2xl md:text-3xl',
+  };
+
+  // 8-ball is special (solid black)
+  const is8Ball = number === 8;
+  
+  return (
+    <div className={`${sizeClasses[size]} ${className} rounded-full flex items-center justify-center relative`}
+         style={{ 
+           backgroundColor: is8Ball ? '#000000' : '#FFFFFF',
+           boxShadow: '0 4px 8px rgba(0,0,0,0.2), inset 0 -2px 4px rgba(0,0,0,0.1)',
+         }}>
+      <span className={`${textSizes[size]} font-black`} 
+            style={{ color: is8Ball ? '#FFFFFF' : '#000000' }}>
+        {number}
+      </span>
+      {/* Shine effect */}
+      <div className="absolute top-1 left-1/4 w-1/3 h-1/3 rounded-full bg-white opacity-40 blur-sm" />
+    </div>
+  );
+};
+
+// Decorative pool ball (for background elements)
+const DecorativePoolBall = ({ number, className = '', animate = false }: { number: number; className?: string; animate?: boolean }) => {
+  const is8Ball = number === 8;
+  
+  const ball = (
+    <div className={`rounded-full flex items-center justify-center ${className}`}
+         style={{ 
+           backgroundColor: is8Ball ? '#000000' : '#FFFFFF',
+           boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
+           opacity: 0.3,
+         }}>
+      <span className="text-2xl md:text-3xl font-black" 
+            style={{ color: is8Ball ? '#FFFFFF' : '#000000', opacity: 0.8 }}>
+        {number}
+      </span>
+    </div>
+  );
+
+  if (animate) {
+    return (
+      <motion.div
+        animate={{ scale: [1, 1.1, 1] }}
+        transition={{ duration: 2.5, repeat: Infinity }}
+      >
+        {ball}
+      </motion.div>
+    );
+  }
+
+  return ball;
+};
+
 export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
   const layout = card.layout || 'centered';
   const tc = card.textColor;
@@ -14,7 +79,7 @@ export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
 
   return (
     <motion.div
-      className="relative flex-shrink-0 w-[85vw] max-w-[380px] h-[70vh] max-h-[600px] rounded-2xl overflow-hidden cursor-pointer"
+      className="relative flex-shrink-0 w-[90vw] max-w-[380px] h-[75vh] max-h-[650px] rounded-2xl overflow-hidden touch-pan-x"
       style={{
         backgroundColor: card.bgGradient,
         boxShadow: isActive 
@@ -29,28 +94,33 @@ export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
         y: isActive ? 0 : 6,
       }}
       transition={{ 
-        duration: 0.4, 
-        delay: index * 0.08,
+        duration: 0.3, 
+        delay: index * 0.05,
         ease: [0.25, 0.46, 0.45, 0.94],
-      }}
-      whileHover={{ 
-        scale: 1.02, 
-        y: -6,
-        transition: { duration: 0.25, ease: 'easeOut' }
       }}
     >
       {/* === INTRO CARD === */}
       {card.type === 'intro' && (
         <div className="flex flex-col items-center justify-center h-full p-10 relative">
+          {/* 8 ball at top */}
+          <motion.div
+            className="mb-8 md:mb-12"
+            initial={{ scale: 0, y: -20 }}
+            animate={{ scale: 1, y: 0 }}
+            transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
+          >
+            <PoolBall number={8} size="lg" />
+          </motion.div>
+
           {/* Large brand-style text */}
           <motion.div
-            className="text-center space-y-8"
+            className="text-center space-y-6 md:space-y-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
+            transition={{ delay: 0.2, duration: 0.4 }}
           >
             <motion.p
-              className="text-6xl md:text-7xl font-black leading-[0.95] tracking-tight whitespace-pre-line"
+              className="text-5xl md:text-7xl font-black leading-[0.95] tracking-tight whitespace-pre-line px-4"
               style={{ color: tc }}
             >
               {card.message}
@@ -62,7 +132,7 @@ export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
               animate={{ x: [0, 15, 0] }}
               transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
             >
-              <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+              <svg width="60" height="60" viewBox="0 0 80 80" fill="none" className="md:w-20 md:h-20">
                 <path 
                   d="M20 40H60M60 40L45 25M60 40L45 55" 
                   stroke={tc} 
@@ -73,20 +143,6 @@ export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
               </svg>
             </motion.div>
           </motion.div>
-
-          {/* Decorative circles */}
-          <motion.div
-            className="absolute top-8 right-8 w-16 h-16 rounded-full border-4"
-            style={{ borderColor: ac, opacity: 0.3 }}
-            animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          />
-          <motion.div
-            className="absolute bottom-12 left-8 w-12 h-12 rounded-full"
-            style={{ backgroundColor: ac, opacity: 0.2 }}
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ duration: 3, repeat: Infinity }}
-          />
         </div>
       )}
 
@@ -104,14 +160,15 @@ export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
             {String(card.trackNumber).padStart(2, '0')}
           </motion.div>
 
-          {/* Track label */}
+          {/* Track label with pool ball */}
           <motion.div 
-            className="relative z-10"
+            className="relative z-10 flex items-center gap-3"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 }}
           >
-            <div className="inline-block px-4 py-2 rounded-full" style={{ backgroundColor: ac }}>
+            <PoolBall number={card.trackNumber!} size="sm" />
+            <div className="px-4 py-2 rounded-full" style={{ backgroundColor: ac }}>
               <span className="text-xs font-bold tracking-wider uppercase" style={{ color: card.bgGradient }}>
                 Track {String(card.trackNumber).padStart(2, '0')}
               </span>
@@ -119,38 +176,38 @@ export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
           </motion.div>
 
           {/* Content */}
-          <div className="space-y-4 relative z-10">
+          <div className="space-y-3 md:space-y-4 relative z-10">
             <motion.h2 
-              className="text-5xl md:text-6xl font-black leading-[0.95] tracking-tight"
+              className="text-4xl md:text-6xl font-black leading-[0.95] tracking-tight"
               style={{ color: tc }}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2, duration: 0.4 }}
+              transition={{ delay: 0.15, duration: 0.3 }}
             >
               {card.title}
             </motion.h2>
             <motion.p 
-              className="text-xl font-bold"
+              className="text-lg md:text-xl font-bold"
               style={{ color: tc, opacity: 0.7 }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.7 }}
-              transition={{ delay: 0.25 }}
+              transition={{ delay: 0.2 }}
             >
               {card.artist}
             </motion.p>
             <motion.div 
-              className="w-20 h-1.5 rounded-full"
+              className="w-16 md:w-20 h-1.5 rounded-full"
               style={{ backgroundColor: ac }}
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
-              transition={{ delay: 0.3, duration: 0.35 }}
+              transition={{ delay: 0.25, duration: 0.3 }}
             />
             <motion.p 
-              className="text-base font-medium italic"
+              className="text-sm md:text-base font-medium italic"
               style={{ color: tc, opacity: 0.6 }}
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 0.6, y: 0 }}
-              transition={{ delay: 0.35 }}
+              transition={{ delay: 0.3 }}
             >
               "{card.vibe}"
             </motion.p>
@@ -160,53 +217,50 @@ export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
 
       {/* === MINIMAL LAYOUT === */}
       {card.type === 'song' && layout === 'minimal' && (
-        <div className="flex flex-col justify-center h-full p-10 relative">
+        <div className="flex flex-col justify-center h-full p-8 md:p-10 relative">
           {/* Side accent bar */}
           <motion.div 
-            className="absolute top-0 left-0 w-3 h-full"
+            className="absolute top-0 left-0 w-2 md:w-3 h-full"
             style={{ backgroundColor: ac }}
             initial={{ scaleY: 0 }}
             animate={{ scaleY: 1 }}
-            transition={{ delay: 0.1, duration: 0.6 }}
+            transition={{ delay: 0.1, duration: 0.5 }}
           />
 
-          {/* Circular badge */}
+          {/* Pool ball badge */}
           <motion.div
-            className="absolute top-8 right-8 w-20 h-20 rounded-full flex items-center justify-center"
-            style={{ backgroundColor: ac }}
+            className="absolute top-6 right-6 md:top-8 md:right-8"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
+            transition={{ delay: 0.15, type: 'spring', stiffness: 200 }}
           >
-            <span className="text-2xl font-black" style={{ color: card.bgGradient }}>
-              {String(card.trackNumber).padStart(2, '0')}
-            </span>
+            <PoolBall number={card.trackNumber!} size="lg" />
           </motion.div>
 
           <motion.div
-            className="space-y-4"
+            className="space-y-3 md:space-y-4"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.25 }}
+            transition={{ delay: 0.2 }}
           >
             <h2 
-              className="text-5xl md:text-6xl font-black leading-[0.95] tracking-tight"
+              className="text-4xl md:text-6xl font-black leading-[0.95] tracking-tight"
               style={{ color: tc }}
             >
               {card.title}
             </h2>
             <p 
-              className="text-xl font-bold"
+              className="text-lg md:text-xl font-bold"
               style={{ color: tc, opacity: 0.7 }}
             >
               {card.artist}
             </p>
             <div 
-              className="w-16 h-1.5 rounded-full"
+              className="w-12 md:w-16 h-1.5 rounded-full"
               style={{ backgroundColor: ac }}
             />
             <p 
-              className="text-base font-medium italic max-w-[80%]"
+              className="text-sm md:text-base font-medium italic max-w-[85%]"
               style={{ color: tc, opacity: 0.6 }}
             >
               "{card.vibe}"
@@ -220,16 +274,16 @@ export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
         <div className="flex flex-col h-full relative">
           {/* Top accent bar */}
           <motion.div 
-            className="w-full h-3"
+            className="w-full h-2 md:h-3"
             style={{ backgroundColor: ac }}
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
-            transition={{ delay: 0.1, duration: 0.5 }}
+            transition={{ delay: 0.1, duration: 0.4 }}
           />
 
           {/* Background number */}
           <motion.div 
-            className="absolute top-12 left-6 text-[140px] font-black leading-none select-none pointer-events-none opacity-[0.06]"
+            className="absolute top-8 left-4 md:top-12 md:left-6 text-[100px] md:text-[140px] font-black leading-none select-none pointer-events-none opacity-[0.06]"
             style={{ color: tc }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.06 }}
@@ -238,30 +292,33 @@ export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
             {String(card.trackNumber).padStart(2, '0')}
           </motion.div>
 
-          {/* Circular element */}
+          {/* Decorative pool ball */}
           <motion.div
-            className="absolute top-1/3 right-6 w-24 h-24 rounded-full border-8"
-            style={{ borderColor: ac, opacity: 0.2 }}
+            className="absolute top-1/3 right-4 md:right-6"
             animate={{ rotate: 360 }}
             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          />
+          >
+            <DecorativePoolBall number={card.trackNumber!} className="w-20 h-20 md:w-24 md:h-24" />
+          </motion.div>
 
           <div className="flex-1" />
           
-          <div className="p-8 pt-4 relative z-10">
+          <div className="p-6 md:p-8 pt-4 relative z-10">
             <motion.div
-              className="inline-block px-4 py-2 rounded-full mb-4"
-              style={{ backgroundColor: ac }}
+              className="flex items-center gap-2 mb-3 md:mb-4"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.15 }}
             >
-              <span className="text-xs font-bold tracking-wider uppercase" style={{ color: card.bgGradient }}>
-                Track {String(card.trackNumber).padStart(2, '0')}
-              </span>
+              <PoolBall number={card.trackNumber!} size="sm" />
+              <div className="px-3 py-1.5 md:px-4 md:py-2 rounded-full" style={{ backgroundColor: ac }}>
+                <span className="text-xs font-bold tracking-wider uppercase" style={{ color: card.bgGradient }}>
+                  Track {String(card.trackNumber).padStart(2, '0')}
+                </span>
+              </div>
             </motion.div>
             <motion.h2 
-              className="text-5xl md:text-6xl font-black leading-[0.95] tracking-tight mb-3"
+              className="text-4xl md:text-6xl font-black leading-[0.95] tracking-tight mb-2 md:mb-3"
               style={{ color: tc }}
               initial={{ opacity: 0, x: -15 }}
               animate={{ opacity: 1, x: 0 }}
@@ -270,7 +327,7 @@ export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
               {card.title}
             </motion.h2>
             <motion.p 
-              className="text-xl font-bold mb-4"
+              className="text-lg md:text-xl font-bold mb-3 md:mb-4"
               style={{ color: tc, opacity: 0.7 }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.7 }}
@@ -279,11 +336,11 @@ export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
               {card.artist}
             </motion.p>
             <motion.p 
-              className="text-base font-medium italic"
+              className="text-sm md:text-base font-medium italic"
               style={{ color: tc, opacity: 0.6 }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.6 }}
-              transition={{ delay: 0.35 }}
+              transition={{ delay: 0.3 }}
             >
               "{card.vibe}"
             </motion.p>
@@ -293,61 +350,50 @@ export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
 
       {/* === BOLD LAYOUT === */}
       {card.type === 'song' && layout === 'bold' && (
-        <div className="flex flex-col justify-center items-center h-full p-8 text-center relative">
+        <div className="flex flex-col justify-center items-center h-full p-6 md:p-8 text-center relative">
           {/* Large circular background element */}
           <motion.div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] rounded-full opacity-[0.08]"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[240px] h-[240px] md:w-[280px] md:h-[280px] rounded-full opacity-[0.08]"
             style={{ backgroundColor: tc }}
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            transition={{ delay: 0.1, duration: 0.6 }}
+            transition={{ delay: 0.1, duration: 0.5 }}
           />
 
-          {/* Track badge */}
+          {/* Pool ball badge */}
           <motion.div
-            className="absolute top-8 left-8 w-16 h-16 rounded-full flex items-center justify-center"
-            style={{ backgroundColor: ac }}
+            className="absolute top-6 left-6 md:top-8 md:left-8"
             initial={{ scale: 0, rotate: -180 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ delay: 0.15, type: 'spring', stiffness: 200 }}
           >
-            <span className="text-xl font-black" style={{ color: card.bgGradient }}>
-              {String(card.trackNumber).padStart(2, '0')}
-            </span>
+            <PoolBall number={card.trackNumber!} size="md" />
           </motion.div>
 
-          {/* Decorative corner circles */}
           <motion.div
-            className="absolute bottom-8 right-8 w-12 h-12 rounded-full"
-            style={{ backgroundColor: ac, opacity: 0.3 }}
-            animate={{ scale: [1, 1.15, 1] }}
-            transition={{ duration: 2.5, repeat: Infinity }}
-          />
-
-          <motion.div
-            className="space-y-5 relative z-10"
+            className="space-y-4 md:space-y-5 relative z-10"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.15 }}
           >
             <h2 
-              className="text-6xl md:text-7xl font-black leading-[0.9] tracking-tighter"
+              className="text-5xl md:text-7xl font-black leading-[0.9] tracking-tighter px-2"
               style={{ color: tc }}
             >
               {card.title}
             </h2>
             <p 
-              className="text-2xl font-bold"
+              className="text-xl md:text-2xl font-bold"
               style={{ color: tc, opacity: 0.7 }}
             >
               {card.artist}
             </p>
             <div 
-              className="w-24 h-2 rounded-full mx-auto"
+              className="w-20 md:w-24 h-1.5 md:h-2 rounded-full mx-auto"
               style={{ backgroundColor: ac }}
             />
             <p 
-              className="text-lg font-medium italic max-w-[85%] mx-auto"
+              className="text-base md:text-lg font-medium italic max-w-[90%] mx-auto px-2"
               style={{ color: tc, opacity: 0.6 }}
             >
               "{card.vibe}"
@@ -358,41 +404,27 @@ export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
 
       {/* === OUTRO CARD === */}
       {card.type === 'outro' && (
-        <div className="flex flex-col items-center justify-center h-full p-10 relative">
+        <div className="flex flex-col items-center justify-center h-full p-8 md:p-10 relative">
           {/* Large decorative circles */}
           <motion.div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full border-8 opacity-[0.1]"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[260px] h-[260px] md:w-[300px] md:h-[300px] rounded-full border-4 md:border-8 opacity-[0.1]"
             style={{ borderColor: tc }}
             animate={{ rotate: 360 }}
             transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
           />
           <motion.div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] rounded-full border-8 opacity-[0.15]"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180px] h-[180px] md:w-[200px] md:h-[200px] rounded-full border-4 md:border-8 opacity-[0.15]"
             style={{ borderColor: ac }}
             animate={{ rotate: -360 }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           />
 
-          {/* Corner decorations */}
-          <motion.div
-            className="absolute top-8 left-8 w-16 h-16 rounded-full"
-            style={{ backgroundColor: ac, opacity: 0.3 }}
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
-          <motion.div
-            className="absolute bottom-8 right-8 w-12 h-12 rounded-full"
-            style={{ backgroundColor: ac, opacity: 0.25 }}
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 2.5, repeat: Infinity }}
-          />
-
           {/* Heart emoji */}
           <motion.div
-            className="text-6xl mb-8"
+            className="text-5xl md:text-6xl mb-6 md:mb-8"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            transition={{ delay: 0.2, type: 'spring', stiffness: 180 }}
+            transition={{ delay: 0.15, type: 'spring', stiffness: 180 }}
           >
             💜
           </motion.div>
@@ -402,10 +434,10 @@ export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
             className="text-center space-y-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35 }}
+            transition={{ delay: 0.25 }}
           >
             <p 
-              className="text-5xl md:text-6xl font-black leading-[0.95] tracking-tight whitespace-pre-line"
+              className="text-4xl md:text-6xl font-black leading-[0.95] tracking-tight whitespace-pre-line px-4"
               style={{ color: tc }}
             >
               {card.message}

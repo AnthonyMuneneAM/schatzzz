@@ -17,7 +17,7 @@ export const cards: SongCard[] = [
   {
     id: 'intro',
     type: 'intro',
-    message: "...swipe",
+    message: "Your Move...",
     bgGradient: '#7B9FD3',
     textColor: '#5D4E3C',
     accentColor: '#FFFFFF',
@@ -121,7 +121,7 @@ export const cards: SongCard[] = [
   {
     id: 'outro',
     type: 'outro',
-    message: 'Schatzzz..\nSei mein Valentin',
+    message: '8 ball,\ncorner pocket',
     bgGradient: '#FFB6C1',
     textColor: '#5D4E3C',
     accentColor: '#9B7EBD',

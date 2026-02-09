@@ -109,6 +109,8 @@
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Inter', system-ui, sans-serif;
     font-feature-settings: 'cv11', 'ss01';
+    overscroll-behavior: none;
+    -webkit-tap-highlight-color: transparent;
   }
 
   /* Hide scrollbar for carousel */
@@ -118,6 +120,14 @@
   }
   .hide-scrollbar::-webkit-scrollbar {
     display: none;
+  }
+
+  /* Improve touch scrolling on mobile */
+  @supports (-webkit-touch-callout: none) {
+    .hide-scrollbar {
+      scroll-snap-type: x proximity;
+      -webkit-overflow-scrolling: touch;
+    }
   }
 }
 
