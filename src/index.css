@@ -114,11 +114,18 @@
     touch-action: pan-y;
   }
 
+  /* Optimize rendering performance */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
   /* Hide scrollbar for carousel */
   .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
     overscroll-behavior-x: contain;
+    contain: layout style paint;
   }
   .hide-scrollbar::-webkit-scrollbar {
     display: none;
@@ -130,6 +137,12 @@
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
     }
+  }
+
+  /* Optimize card rendering */
+  .snap-center {
+    content-visibility: auto;
+    contain-intrinsic-size: 380px 650px;
   }
 }
 

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { memo } from 'react';
 import type { SongCard } from './CardData';
 
 interface ValentineCardProps {
@@ -72,7 +73,7 @@ const DecorativePoolBall = ({ number, className = '', animate = false }: { numbe
   return ball;
 };
 
-export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
+export const ValentineCard = memo(function ValentineCard({ card, index, isActive }: ValentineCardProps) {
   const layout = card.layout || 'centered';
   const tc = card.textColor;
   const ac = card.accentColor;
@@ -439,4 +440,4 @@ export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
       )}
     </motion.div>
   );
-}
+});
