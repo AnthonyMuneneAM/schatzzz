@@ -409,14 +409,14 @@ export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           />
 
-          {/* Bullseye emoji */}
+          {/* Purple heart emoji */}
           <motion.div
             className="text-6xl md:text-7xl mb-8 md:mb-10"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.15, type: 'spring', stiffness: 180 }}
           >
-            �
+            💜
           </motion.div>
 
           {/* Message */}

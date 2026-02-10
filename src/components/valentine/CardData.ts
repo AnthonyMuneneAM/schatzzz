@@ -111,7 +111,7 @@ export const cards: SongCard[] = [
     type: 'song',
     title: 'Dansa',
     artist: 'Klassik Frescobar',
-    vibe: 'Body good, body stacked like pringles',
+    vibe: 'Make you shake, make you shake like shingles',
     bgGradient: '#9B7EBD',
     textColor: '#FFFFFF',
     accentColor: '#4ECDC4',
