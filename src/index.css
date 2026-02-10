@@ -111,12 +111,14 @@
     font-feature-settings: 'cv11', 'ss01';
     overscroll-behavior: none;
     -webkit-tap-highlight-color: transparent;
+    touch-action: pan-y;
   }
 
   /* Hide scrollbar for carousel */
   .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+    overscroll-behavior-x: contain;
   }
   .hide-scrollbar::-webkit-scrollbar {
     display: none;
@@ -125,7 +127,7 @@
   /* Improve touch scrolling on mobile */
   @supports (-webkit-touch-callout: none) {
     .hide-scrollbar {
-      scroll-snap-type: x proximity;
+      scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
     }
   }

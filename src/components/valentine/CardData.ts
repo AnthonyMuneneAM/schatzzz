@@ -51,7 +51,7 @@ export const cards: SongCard[] = [
     type: 'song',
     title: 'Wrong Places',
     artist: 'Joshua Baraka',
-    vibe: 'Shottos for the Hottos',
+    vibe: '...always be my chargie baby...',
     bgGradient: '#9B7EBD',
     textColor: '#FFFFFF',
     accentColor: '#FFD93D',

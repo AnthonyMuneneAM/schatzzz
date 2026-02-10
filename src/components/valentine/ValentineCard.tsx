@@ -79,7 +79,7 @@ export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
 
   return (
     <motion.div
-      className="relative flex-shrink-0 w-[90vw] max-w-[380px] h-[75vh] max-h-[650px] rounded-2xl overflow-hidden touch-pan-x"
+      className="relative flex-shrink-0 w-[85vw] max-w-[380px] h-[70vh] max-h-[650px] rounded-2xl overflow-hidden"
       style={{
         backgroundColor: card.bgGradient,
         boxShadow: isActive 

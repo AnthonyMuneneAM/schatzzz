@@ -82,12 +82,13 @@ export function CardCarousel() {
       {/* Cards container */}
       <div
         ref={containerRef}
-        className="flex items-center gap-4 md:gap-6 px-[5vw] md:px-[10vw] pt-20 pb-20 overflow-x-auto hide-scrollbar snap-x snap-proximity h-screen"
+        className="flex items-center gap-4 md:gap-6 px-[5vw] md:px-[10vw] pt-20 pb-20 overflow-x-auto hide-scrollbar snap-x snap-mandatory h-screen"
         style={{ 
-          scrollSnapType: 'x proximity',
+          scrollSnapType: 'x mandatory',
           WebkitOverflowScrolling: 'touch',
-          scrollBehavior: 'smooth',
+          scrollBehavior: isDragging ? 'auto' : 'smooth',
           touchAction: 'pan-x',
+          overscrollBehaviorX: 'contain',
         }}
         onMouseDown={() => setIsDragging(true)}
         onMouseUp={() => setIsDragging(false)}
