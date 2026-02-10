@@ -8,31 +8,44 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 export function CardCarousel() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [progress, setProgress] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout>();
 
   const updateProgress = useCallback(() => {
     if (!containerRef.current) return;
     
     const container = containerRef.current;
     const scrollLeft = container.scrollLeft;
-    const maxScroll = container.scrollWidth - container.clientWidth;
-    const newProgress = maxScroll > 0 ? scrollLeft / maxScroll : 0;
-    
-    setProgress(newProgress);
     
     // Calculate current card index based on scroll position
     const cardWidth = container.scrollWidth / cards.length;
     const newIndex = Math.round(scrollLeft / cardWidth);
-    setCurrentIndex(Math.min(newIndex, cards.length - 1));
-  }, []);
+    const clampedIndex = Math.min(Math.max(0, newIndex), cards.length - 1);
+    
+    if (clampedIndex !== currentIndex) {
+      setCurrentIndex(clampedIndex);
+    }
+  }, [currentIndex]);
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    container.addEventListener('scroll', updateProgress, { passive: true });
-    return () => container.removeEventListener('scroll', updateProgress);
+    const handleScroll = () => {
+      // Throttle updates - only update after scrolling stops
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+      scrollTimeoutRef.current = setTimeout(updateProgress, 50);
+    };
+
+    container.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      container.removeEventListener('scroll', handleScroll);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
   }, [updateProgress]);
 
   const scrollToCard = (index: number) => {
@@ -74,7 +87,6 @@ export function CardCarousel() {
   return (
     <div className="relative min-h-screen overflow-hidden" style={{ background: '#E8DED2' }}>
       <ProgressBar 
-        progress={progress} 
         totalCards={cards.length}
         currentIndex={currentIndex}
       />
@@ -89,6 +101,7 @@ export function CardCarousel() {
           scrollBehavior: isDragging ? 'auto' : 'smooth',
           touchAction: 'pan-x',
           overscrollBehaviorX: 'contain',
+          willChange: 'scroll-position',
         }}
         onMouseDown={() => setIsDragging(true)}
         onMouseUp={() => setIsDragging(false)}
@@ -97,20 +110,17 @@ export function CardCarousel() {
         onTouchEnd={() => setIsDragging(false)}
       >
         {cards.map((card, index) => (
-          <motion.div 
+          <div 
             key={card.id}
             className="snap-center flex-shrink-0"
             style={{ scrollSnapAlign: 'center' }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3, delay: index * 0.05 }}
           >
             <ValentineCard 
               card={card} 
               index={index}
               isActive={currentIndex === index}
             />
-          </motion.div>
+          </div>
         ))}
       </div>
 
@@ -146,40 +156,38 @@ export function CardCarousel() {
       </AnimatePresence>
 
       {/* Swipe hint for mobile */}
-      <motion.div 
+      <div 
         className="absolute bottom-8 left-1/2 -translate-x-1/2 md:hidden"
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1 }}
+        style={{ 
+          opacity: currentIndex === 0 ? 1 : 0,
+          transition: 'opacity 0.3s ease-out'
+        }}
       >
-        <motion.p 
+        <p 
           className="text-gray-600 text-sm tracking-wider font-medium"
-          animate={{ x: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
+          style={{
+            animation: 'swipeHint 1.5s ease-in-out infinite'
+          }}
         >
           swipe →
-        </motion.p>
-      </motion.div>
+        </p>
+      </div>
 
-      {/* Abstract background shapes */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <motion.div 
+      {/* Abstract background shapes - simplified */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-50">
+        <div 
           className="absolute top-20 right-20 w-64 h-64 rounded-full blur-3xl"
-          style={{ backgroundColor: '#9B7EBD20' }}
-          animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: [0.2, 0.3, 0.2],
+          style={{ 
+            backgroundColor: '#9B7EBD20',
+            animation: 'float1 8s ease-in-out infinite'
           }}
-          transition={{ duration: 8, repeat: Infinity }}
         />
-        <motion.div 
+        <div 
           className="absolute bottom-32 left-32 w-96 h-96 rounded-full blur-3xl"
-          style={{ backgroundColor: '#FF6B3520' }}
-          animate={{ 
-            scale: [1, 1.3, 1],
-            opacity: [0.15, 0.25, 0.15],
+          style={{ 
+            backgroundColor: '#FF6B3520',
+            animation: 'float2 10s ease-in-out infinite 2s'
           }}
-          transition={{ duration: 10, repeat: Infinity, delay: 2 }}
         />
       </div>
     </div>

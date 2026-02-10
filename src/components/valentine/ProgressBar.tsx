@@ -1,12 +1,11 @@
 import { motion } from 'framer-motion';
 
 interface ProgressBarProps {
-  progress: number;
   totalCards: number;
   currentIndex: number;
 }
 
-export function ProgressBar({ progress, totalCards, currentIndex }: ProgressBarProps) {
+export function ProgressBar({ totalCards, currentIndex }: ProgressBarProps) {
   return (
     <div className="fixed top-0 left-0 right-0 z-50 px-4 pt-4 md:px-8 md:pt-6">
       {/* Progress segments */}
@@ -17,18 +16,12 @@ export function ProgressBar({ progress, totalCards, currentIndex }: ProgressBarP
             className="flex-1 h-1.5 rounded-full overflow-hidden"
             style={{ backgroundColor: 'rgba(93, 78, 60, 0.2)' }}
           >
-            <motion.div
-              className="h-full rounded-full"
-              style={{ backgroundColor: '#5D4E3C' }}
-              initial={{ width: 0 }}
-              animate={{
-                width: index < currentIndex 
-                  ? '100%' 
-                  : index === currentIndex 
-                    ? `${Math.min(100, Math.max(0, (progress - (index / totalCards)) * totalCards * 100))}%`
-                    : '0%'
+            <div
+              className="h-full rounded-full transition-all duration-300 ease-out"
+              style={{ 
+                backgroundColor: '#5D4E3C',
+                width: index <= currentIndex ? '100%' : '0%'
               }}
-              transition={{ duration: 0.3, ease: 'easeOut' }}
             />
           </div>
         ))}

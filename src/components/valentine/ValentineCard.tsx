@@ -85,18 +85,16 @@ export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
         boxShadow: isActive 
           ? '0 20px 40px -10px rgba(0, 0, 0, 0.3)' 
           : '0 10px 25px -8px rgba(0, 0, 0, 0.2)',
+        willChange: 'transform',
       }}
-      initial={{ opacity: 0, x: 30, scale: 0.98 }}
+      initial={false}
       animate={{ 
-        opacity: 1, 
-        x: 0, 
         scale: isActive ? 1 : 0.96,
         y: isActive ? 0 : 6,
       }}
       transition={{ 
-        duration: 0.3, 
-        delay: index * 0.05,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        duration: 0.2, 
+        ease: 'easeOut',
       }}
     >
       {/* === INTRO CARD === */}
@@ -127,10 +125,11 @@ export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
             </motion.p>
             
             {/* Animated arrow */}
-            <motion.div
+            <div
               className="flex justify-center"
-              animate={{ x: [0, 15, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              style={{
+                animation: 'swipeHint 1.5s ease-in-out infinite'
+              }}
             >
               <svg width="60" height="60" viewBox="0 0 80 80" fill="none" className="md:w-20 md:h-20">
                 <path 
@@ -141,7 +140,7 @@ export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
                   strokeLinejoin="round"
                 />
               </svg>
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       )}
@@ -288,13 +287,14 @@ export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
           </motion.div>
 
           {/* Decorative pool ball */}
-          <motion.div
+          <div
             className="absolute top-1/3 right-4 md:right-6"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+            style={{
+              animation: 'float1 25s linear infinite'
+            }}
           >
             <DecorativePoolBall number={card.trackNumber!} className="w-20 h-20 md:w-24 md:h-24" />
-          </motion.div>
+          </div>
 
           <div className="flex-1" />
           
@@ -396,17 +396,19 @@ export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
       {card.type === 'outro' && (
         <div className="flex flex-col items-center justify-center h-full p-8 md:p-10 relative">
           {/* Large decorative circles */}
-          <motion.div
+          <div
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[260px] h-[260px] md:w-[300px] md:h-[300px] rounded-full border-4 md:border-8 opacity-[0.1]"
-            style={{ borderColor: tc }}
-            animate={{ rotate: 360 }}
-            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+            style={{ 
+              borderColor: tc,
+              animation: 'float1 30s linear infinite'
+            }}
           />
-          <motion.div
+          <div
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180px] h-[180px] md:w-[200px] md:h-[200px] rounded-full border-4 md:border-8 opacity-[0.15]"
-            style={{ borderColor: ac }}
-            animate={{ rotate: -360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            style={{ 
+              borderColor: ac,
+              animation: 'float2 20s linear infinite'
+            }}
           />
 
           {/* Purple heart emoji */}
