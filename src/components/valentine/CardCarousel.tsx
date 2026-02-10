@@ -9,34 +9,44 @@ export function CardCarousel() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout>();
 
-  // Use Intersection Observer for accurate card detection
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
-            const index = cardRefs.current.findIndex((ref) => ref === entry.target);
-            if (index !== -1 && index !== currentIndex) {
-              setCurrentIndex(index);
-            }
-          }
-        });
-      },
-      {
-        root: containerRef.current,
-        threshold: [0.5, 0.75, 1.0],
-        rootMargin: '0px',
-      }
-    );
-
-    cardRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref);
-    });
-
-    return () => observer.disconnect();
+  const updateProgress = useCallback(() => {
+    if (!containerRef.current) return;
+    
+    const container = containerRef.current;
+    const scrollLeft = container.scrollLeft;
+    
+    // Calculate current card index based on scroll position
+    const cardWidth = container.scrollWidth / cards.length;
+    const newIndex = Math.round(scrollLeft / cardWidth);
+    const clampedIndex = Math.min(Math.max(0, newIndex), cards.length - 1);
+    
+    if (clampedIndex !== currentIndex) {
+      setCurrentIndex(clampedIndex);
+    }
   }, [currentIndex]);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      // Throttle updates - only update after scrolling stops
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+      scrollTimeoutRef.current = setTimeout(updateProgress, 50);
+    };
+
+    container.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      container.removeEventListener('scroll', handleScroll);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, [updateProgress]);
 
   const scrollToCard = (index: number) => {
     if (!containerRef.current) return;
@@ -102,7 +112,6 @@ export function CardCarousel() {
         {cards.map((card, index) => (
           <div 
             key={card.id}
-            ref={(el) => (cardRefs.current[index] = el)}
             className="snap-center flex-shrink-0"
             style={{ scrollSnapAlign: 'center' }}
           >
