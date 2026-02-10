@@ -17,7 +17,7 @@ export const cards: SongCard[] = [
   {
     id: 'intro',
     type: 'intro',
-    message: "Your Move...",
+    message: "Some Songs\n4 U",
     bgGradient: '#7B9FD3',
     textColor: '#5D4E3C',
     accentColor: '#FFFFFF',
@@ -61,9 +61,9 @@ export const cards: SongCard[] = [
   {
     id: 'song-4',
     type: 'song',
-    title: 'Real Bad Gal',
-    artist: 'Vybz Kartel',
-    vibe: 'The energy you bring? Unmatched.',
+    title: 'Shake That Thing',
+    artist: 'Mad G',
+    vibe: 'Ukona kwelaa fiiiiiinneeee',
     bgGradient: '#FFD93D',
     textColor: '#5D4E3C',
     accentColor: '#9B7EBD',
@@ -109,9 +109,9 @@ export const cards: SongCard[] = [
   {
     id: 'song-8',
     type: 'song',
-    title: 'My Type',
-    artist: 'Popcaan',
-    vibe: 'Exactly what I was looking for.',
+    title: 'Dansa',
+    artist: 'Klassik Frescobar',
+    vibe: 'Body good, body stacked like pringles',
     bgGradient: '#9B7EBD',
     textColor: '#FFFFFF',
     accentColor: '#4ECDC4',
@@ -121,7 +121,7 @@ export const cards: SongCard[] = [
   {
     id: 'outro',
     type: 'outro',
-    message: '8 ball,\ncorner pocket',
+    message: '10/10...\nbe my valentine',
     bgGradient: '#FFB6C1',
     textColor: '#5D4E3C',
     accentColor: '#9B7EBD',

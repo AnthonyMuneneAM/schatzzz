@@ -168,11 +168,6 @@ export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
             transition={{ delay: 0.15 }}
           >
             <PoolBall number={card.trackNumber!} size="sm" />
-            <div className="px-4 py-2 rounded-full" style={{ backgroundColor: ac }}>
-              <span className="text-xs font-bold tracking-wider uppercase" style={{ color: card.bgGradient }}>
-                Track {String(card.trackNumber).padStart(2, '0')}
-              </span>
-            </div>
           </motion.div>
 
           {/* Content */}
@@ -311,11 +306,6 @@ export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
               transition={{ delay: 0.15 }}
             >
               <PoolBall number={card.trackNumber!} size="sm" />
-              <div className="px-3 py-1.5 md:px-4 md:py-2 rounded-full" style={{ backgroundColor: ac }}>
-                <span className="text-xs font-bold tracking-wider uppercase" style={{ color: card.bgGradient }}>
-                  Track {String(card.trackNumber).padStart(2, '0')}
-                </span>
-              </div>
             </motion.div>
             <motion.h2 
               className="text-4xl md:text-6xl font-black leading-[0.95] tracking-tight mb-2 md:mb-3"
@@ -419,25 +409,25 @@ export function ValentineCard({ card, index, isActive }: ValentineCardProps) {
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           />
 
-          {/* Heart emoji */}
+          {/* Bullseye emoji */}
           <motion.div
-            className="text-5xl md:text-6xl mb-6 md:mb-8"
+            className="text-6xl md:text-7xl mb-8 md:mb-10"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.15, type: 'spring', stiffness: 180 }}
           >
-            💜
+            �
           </motion.div>
 
           {/* Message */}
           <motion.div
-            className="text-center space-y-4"
+            className="text-center space-y-3 md:space-y-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25 }}
           >
             <p 
-              className="text-4xl md:text-6xl font-black leading-[0.95] tracking-tight whitespace-pre-line px-4"
+              className="text-4xl md:text-5xl font-black leading-[0.95] tracking-tight whitespace-pre-line px-4"
               style={{ color: tc }}
             >
               {card.message}
